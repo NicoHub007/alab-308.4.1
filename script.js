@@ -1,10 +1,31 @@
-
-
-
-//Part 2 - Expanding
-
 const csvStr = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor’s Assistant,26";
 
+// Part 1 - Refactoring Old Code
+let str = '';
+let row = [];
+
+for (let i = 0; i < csvStr.length; i++) {
+    let ch = csvStr[i];
+    if (ch == "," || ch == "\n" || i === csvStr.length - 1){
+        row.push(str); // add to row
+        str = ''; // clear str
+
+        // if it is new line or we are at the last character of the whole string,
+        // it is the end of the row.
+        if (ch == "\n" || i === csvStr.length - 1){
+            // print out the row
+            console.log(row.join(', '));
+            // clear row
+            row = [];
+        }
+    }
+    else {
+        str += ch; // add character to str
+    }
+}
+//console.log("\n");
+
+// Part 2 - Expanding Functionality
 let splitRows = csvStr.split("\n");
 console.log(splitRows, "\n");
 let numRow = splitRows.length;
